@@ -53,7 +53,7 @@ import string
 
 
 
-def perturbed_response1(AGENT_NO,data_to_look,perturb_ratio):
+def perturbed_response1(AGENT_NO,data_to_look,perturb_ratio,name_len):
     try:
         count_pd = data_to_look.loc[data_to_look["agent"]==AGENT_NO]["name_offered_by_opponent"].value_counts().reset_index()
         count_pd["tot_sum"] = count_pd["name_offered_by_opponent"] / sum(count_pd["name_offered_by_opponent"])
@@ -77,7 +77,7 @@ def perturbed_response1(AGENT_NO,data_to_look,perturb_ratio):
 
 
 
-def perturbed_response2(AGENT_NO,data_to_look):
+def perturbed_response2(AGENT_NO,data_to_look,name_len):
     try:
         count_pd = data_to_look.loc[data_to_look["agent"]==AGENT_NO]["name_offered_by_opponent"].value_counts().reset_index()
         count_pd["tot_sum"] = count_pd["name_offered_by_opponent"] / sum(count_pd["name_offered_by_opponent"])
@@ -95,7 +95,7 @@ def perturbed_response2(AGENT_NO,data_to_look):
 
 
 
-def perturbed_response3(AGENT_NO,data_to_look,perturb_ratio):
+def perturbed_response3(AGENT_NO,data_to_look,perturb_ratio,name_len):
     try:
         count_pd = data_to_look.loc[data_to_look["agent"]==AGENT_NO]["name_offered_by_opponent"].value_counts().reset_index()
         count_pd["tot_sum"] = count_pd["name_offered_by_opponent"] / sum(count_pd["name_offered_by_opponent"])
@@ -115,7 +115,7 @@ def perturbed_response3(AGENT_NO,data_to_look,perturb_ratio):
 
 
 
-def perturbed_response4(AGENT_NO,data_to_look):
+def perturbed_response4(AGENT_NO,data_to_look,name_len):
     try:
         count_pd = data_to_look.loc[data_to_look["agent"]==AGENT_NO]["name_offered_by_opponent"].value_counts().reset_index()
         count_pd["tot_sum"] = count_pd["name_offered_by_opponent"] / sum(count_pd["name_offered_by_opponent"])
@@ -245,17 +245,17 @@ def network_simulations(num_neighbors,
             agent2 = vcheck[0][1]
 
             if function_to_use == 'perturbed_response1':
-                name_to_fill1 = perturbed_response1(AGENT_NO = agent1,data_to_look = empty_df_to_fill_trial,perturb_ratio=perturb_ratio)
-                name_to_fill2 = perturbed_response1(AGENT_NO = agent2,data_to_look = empty_df_to_fill_trial,perturb_ratio=perturb_ratio)
+                name_to_fill1 = perturbed_response1(AGENT_NO = agent1,data_to_look = empty_df_to_fill_trial,perturb_ratio=perturb_ratio,name_len=name_len)
+                name_to_fill2 = perturbed_response1(AGENT_NO = agent2,data_to_look = empty_df_to_fill_trial,perturb_ratio=perturb_ratio,name_len=name_len)
             elif function_to_use == 'perturbed_response2':
-                name_to_fill1 = perturbed_response2(AGENT_NO = agent1,data_to_look = empty_df_to_fill_trial)
-                name_to_fill2 = perturbed_response2(AGENT_NO = agent2,data_to_look = empty_df_to_fill_trial)
+                name_to_fill1 = perturbed_response2(AGENT_NO = agent1,data_to_look = empty_df_to_fill_trial,name_len=name_len)
+                name_to_fill2 = perturbed_response2(AGENT_NO = agent2,data_to_look = empty_df_to_fill_trial,name_len=name_len)
             elif function_to_use == 'perturbed_response3':
-                name_to_fill1 = perturbed_response3(AGENT_NO = agent1,data_to_look = empty_df_to_fill_trial,perturb_ratio=perturb_ratio)
-                name_to_fill2 = perturbed_response3(AGENT_NO = agent2,data_to_look = empty_df_to_fill_trial,perturb_ratio=perturb_ratio)
+                name_to_fill1 = perturbed_response3(AGENT_NO = agent1,data_to_look = empty_df_to_fill_trial,perturb_ratio=perturb_ratio,name_len=name_len)
+                name_to_fill2 = perturbed_response3(AGENT_NO = agent2,data_to_look = empty_df_to_fill_trial,perturb_ratio=perturb_ratio,name_len=name_len)
             elif function_to_use == 'perturbed_response4':
-                name_to_fill1 = perturbed_response4(AGENT_NO = agent1,data_to_look = empty_df_to_fill_trial)
-                name_to_fill2 = perturbed_response4(AGENT_NO = agent2,data_to_look = empty_df_to_fill_trial)
+                name_to_fill1 = perturbed_response4(AGENT_NO = agent1,data_to_look = empty_df_to_fill_trial,name_len=name_len)
+                name_to_fill2 = perturbed_response4(AGENT_NO = agent2,data_to_look = empty_df_to_fill_trial,name_len=name_len)
 
 
 
