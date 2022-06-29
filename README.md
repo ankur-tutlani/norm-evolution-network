@@ -72,7 +72,7 @@ In the ‘network_name’ parameter above, below is the explanation for what the
 5. random: Compute a random graph by swapping edges of a given graph. The given graph used is Watts–Strogatz small-world graph (the one produced by ‘small_world1’).
 6. grid2d: Return the 2d grid graph of mxn nodes, each connected to its nearest neighbors.
 
-We have used the networkx python library to populate these graphs. For more information around these graphs are how these are produced please refer to the documentation of this library on networkx · PyPI
+We have used the networkx python library to populate these graphs. For more information around these graphs and how these are produced please refer to the link in the reference section.
 
 
 
@@ -94,15 +94,15 @@ To begin with, agents do not have history to look back into, hence agents propos
 
 We assume name to be any string of length name_len, a combination of alpha and numeric characters generated randomly. Agents keep track of names proposed by other agents and accordingly update their actions in the successive rounds of play. We assume agents have bounded rationality and engaged in limited calculations to decide upon what action to take.
 
-We have considered different combinations of strategies that agents can adopt while taking actions. We assume that agents use perturbed best response implying agents can take action randomly with a certain probability (Young 2015). At each time when agents require to take action, they look at the names proposed in the past by their opponents and decide what name to propose in the current period. We have tested four such possibilities which agents can use to decide what action to take. The ‘function_to_use’ arguments detailed about these possibilities and what this mean.
+We have considered different combinations of strategies that agents can adopt while taking actions. We assume that agents use perturbed best response implying agents can take action randomly with a certain probability (Young, 2015). At each time when agents require to take action, they look at the names proposed in the past by their opponents and decide what name to propose in the current period. We have tested four different ways which agents can use to decide what action to take. The ‘function_to_use’ parameter provides details about these and how these are different to each other.
 
-When the simulations are run for num_of_rounds rounds and num_of_trials trials, we get the percentage distribution of different names (strategies) which agents proposed. The names which have been proposed the most are potential candidates for norm. We can see the output like below.
+When the simulations are run for 'num_of_rounds' rounds and 'num_of_trials' trials, we get the percentage distribution of different names (strategies) which agents proposed. The names which have been proposed the most are potential candidates for norm. We can see the output like below.
 
 <p align="center">
   <img src="norm_evolution_ringnetwork_2.png" />
 </p>
 
-In above figure, agents 17, 18 and 19 proposed same name majority of the times, hence these are coloured in same color (green). Color itself has no significance here, it is used to demonstrate which agents taking same action. Same color agents taking same action majority of the times. The agents encircled demonstrates which agent proposed that name first. We have detailed explanation of the output generated in the next section.
+In above figure, agents 17, 18 and 19 proposed same name majority of the times, hence these are coloured in same color (green). Color itself has no significance here, it is used to demonstrate which agents taking same action. Same color agents taking same action majority of the times. The agents encircled demonstrates which agent proposed that name first. The detailed explanation of the output generated is provided in the next section.
 
 
 ## How to interpret output?
@@ -124,13 +124,13 @@ There are total 12 files generated in the output.
 
 The image file (.png) is the network graph which is being considered for the simulation. The nodes in the png file follow the logic specified in ‘agent_mostfrequent_percentshare_.....txt’ file. This text file contains the information on the most frequent strategy used by agents and the % of times it was used. Agents following the same strategy most frequently, they would be coloured in the same colour in the png file.
 
-File name beginning with ‘parameters_..’ lists all the parameters which have been specified in the function call.
+Parameters file ‘parameters_..’ lists all the parameters which have been specified in the function call.
 
-File ‘aggregate_data_consolidated_..’ has the percentage frequency distribution of all the strategies that have been used during the simulation run. File ‘aggregate_data_detailed_..’ gives detailed information on how this was achieved by giving agents information by each trail and round. File ‘aggregate_norm_trail_..’ provides information on trial and round for the specific strategy which has met the cut off (cutoff_norms) for calling it as a norm. This is the trail and round when the specific strategy has first met the cut off specified at the aggregate level (irrespective of which agent has proposed that strategy).  On the other hand, ‘agent_norm_trail_round_...’ provides this information at the agent level. This gives information on if a specific agent individually has proposed that name at least cutoff_norms % of times in the entire simulation run and if yes, what is that round and trail. 
+File ‘aggregate_data_consolidated_..’ has the percentage frequency distribution of all the strategies that have been used during the simulation run. File ‘aggregate_data_detailed_..’ gives detailed information on how this was achieved by giving agents information by each trail and round. File ‘aggregate_norm_trail_..’ provides information on trial and round for the specific strategy which has met the cut off ('cutoff_norms') for calling it as a norm. This is the trail and round when the specific strategy has first met the cut off specified at the aggregate level (irrespective of which agent has proposed that strategy).  On the other hand, ‘agent_norm_trail_round_...’ provides this information at the agent level. This gives information on if a specific agent individually has proposed that name at least 'cutoff_norms' % of times in the entire simulation run and if yes, what is that round and trail. 
 
-File ‘agent_distribution_test_...’ shows how many % of times the agent has come in the simulations tried. Similarly, ‘opponentagent_distribution_test_...’ provides this information for the opponent agent. File ‘agents_pairs_distribution_..’ provides information at the pair level (agent, opponent agent).
+Distribution file ‘agent_distribution_test_...’ shows how many % of times the agent has come in the simulations tried. Similarly, ‘opponentagent_distribution_test_...’ provides this information for the opponent agent. File ‘agents_pairs_distribution_..’ provides information at the pair level (agent, opponent agent).
 
-File ‘firstagent_...’ provides information on which agent proposed the name first which are the candidates for potential norm. File ‘fixedagents_data_detailed_...’ provides information on the agents which are assumed to be fixed as per fixed_agents_ratio ratio specified. Fixed agents follow the same strategy irrespective of what other agents propose. This file also provides information on when they used that strategy for the first time (trail and round details)
+File ‘firstagent_...’ provides information on which agent proposed the name first which are the candidates for potential norm. File ‘fixedagents_data_detailed_...’ provides information on the agents which are assumed to be fixed as per 'fixed_agents_ratio' specified. Fixed agents follow the same strategy irrespective of what other agents follow. This file also provides information on when they used that strategy for the first time (trail and round details)
 
 
 ## References
